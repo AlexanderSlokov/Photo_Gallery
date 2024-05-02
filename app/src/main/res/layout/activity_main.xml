@@ -8,24 +8,25 @@
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="496dp"
-            android:layout_above="@+id/downloadAllButton" android:layout_marginBottom="178dp"/>
+            android:layout_height="546dp"
+            android:layout_above="@+id/downloadAllButton" android:layout_marginBottom="100dp"/>
     <Button
             android:id="@+id/downloadAllButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="13dp"
-            android:text="Download Selected Files"
+            android:text="Download Files"
             android:textAllCaps="false"
             android:textSize="21sp"
-            tools:ignore="HardcodedText" android:layout_alignParentEnd="true" android:layout_marginEnd="65dp"/>
+            tools:ignore="HardcodedText" android:layout_alignParentEnd="true" android:layout_marginEnd="109dp"
+            android:layout_alignParentStart="true" android:layout_marginStart="110dp"/>
     <Button
             android:text="@string/upload_files"
             android:layout_width="174dp"
             android:layout_height="wrap_content" android:id="@+id/UploadButton"
             android:layout_marginEnd="118dp"
-            android:layout_alignParentBottom="true" android:layout_marginBottom="74dp"
+            android:layout_alignParentBottom="true" android:layout_marginBottom="100dp"
             android:layout_alignParentEnd="true" android:layout_alignParentStart="true"
             android:layout_marginStart="119dp" android:textSize="21sp"/>
 

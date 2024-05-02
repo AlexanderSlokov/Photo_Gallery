@@ -27,9 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageAdapter imageAdapter;
     private final List<Uri> imageUris = new ArrayList<>();
     private final List<String> uploadImageUris = new ArrayList<>();
-
-    private ActivityResultLauncher<String> mGetContent;
-
+    private ActivityResultLauncher<String> mGetMultipleImages;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,14 +39,10 @@ public class MainActivity extends AppCompatActivity {
         imageAdapter = new ImageAdapter(this, imageUris);
         recyclerView.setAdapter(imageAdapter);
 
-        // Setup the activity result launcher
-        mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
-                uri -> {
-                    if (uri != null) {
-                        uploadImageUris.add(uri.toString());
-                        scheduleBatchUploads(uploadImageUris, 10); // Ví dụ: batchSize là 5
-                    }
-                });
+        // Set up the activity result launcher for multiple images
+        mGetMultipleImages = registerForActivityResult(new ActivityResultContracts.GetMultipleContents(),
+                this::handleMultipleImageResult);
+
 
         // downloadAllButton listener
         Button downloadAllButton = findViewById(R.id.downloadAllButton);
@@ -63,10 +57,19 @@ public class MainActivity extends AppCompatActivity {
         // Gọi phương thức để tải ảnh
         loadImagesFromFirebase();
     }
+    private void handleMultipleImageResult(List<Uri> uris) {
+        if (uris != null) {
+            for (Uri uri : uris) {
+                uploadImageUris.add(uri.toString());
+            }
+            scheduleBatchUploads(uploadImageUris, 10);
+        }
+    }
 
     private void openImageSelector() {
-        mGetContent.launch("image/*");
+        mGetMultipleImages.launch("image/*");
     }
+
     public void scheduleBatchUploads(@NotNull List<String> imageUris, int batchSize) {
         for (int i = 0; i < imageUris.size(); i += batchSize) {
             List<String> batch = imageUris.subList(i, Math.min(i + batchSize, imageUris.size()));
