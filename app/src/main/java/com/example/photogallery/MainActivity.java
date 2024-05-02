@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
     private void openImageSelector() {
         mGetContent.launch("image/*");
     }
-
     public void scheduleBatchUploads(@NotNull List<String> imageUris, int batchSize) {
         for (int i = 0; i < imageUris.size(); i += batchSize) {
             List<String> batch = imageUris.subList(i, Math.min(i + batchSize, imageUris.size()));
@@ -128,7 +127,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
     private void fetchImageUrisFromFirebase() {
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
