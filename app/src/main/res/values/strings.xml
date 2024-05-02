@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Photo Gallery</string>
+    <string name="todo">TODO</string>
+    <string name="uploadbutton">uploadButton</string>
+    <string name="uploadButton"/>
+    <string name="upload_files">Upload Files</string>
+</resources>
